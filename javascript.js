@@ -1,6 +1,5 @@
-//function
+//function to play Rock Paper Scissors
 function rps() {
-//create variable and use random function to generate/set an answer for the computer
 //create variable and use an input to capture the user's answer
     let userAns = prompt('Enter your choice of Rock, Paper or Scissors');
 //if cancelled, send this message; if not, continue as planned
@@ -9,6 +8,7 @@ function rps() {
             return
         }
         else{
+//standardize answer by forcing it to all caps
             userAns = userAns.toUpperCase()
             console.log(userAns)
         };
@@ -18,11 +18,11 @@ function rps() {
     var losses = 0;
 //begin loop to manage a 5 game set
     for (let i=1; i<6; i++) {
-//establish list of acceptable answers
+//use array to establish list of acceptable answers. use all caps to standardize for comparison
     let ansArray = ['ROCK', 'PAPER', 'SCISSORS'];
+//create variable and use random function to generate/set an answer for the computer
     let pcAns = ansArray[Math.floor(Math.random() * ansArray.length)];
     console.log(pcAns);
-
 //compare answers
         if(userAns == pcAns) {
             ties == ties++
