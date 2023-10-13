@@ -1,0 +1,58 @@
+.title{
+    text-align:center;
+}
+.weaponPics{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.playerPics{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 50px;
+}
+.movePics{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+
+    .myMovePics{
+        display: flex;
+        flex-direction: column;
+        align-content:flex-start;
+
+        .myROCK{
+            visibility: hidden;
+        };
+        .myPAPER{
+            visibility: hidden;
+        };
+        .mySCISSORS{
+            visibility: hidden;
+        }
+    }
+    .pcMovePics{
+        display: flex;
+        flex-direction: column;
+        align-content: flex-start;
+
+        .pcRock{
+            visibility: hidden;
+        };
+        .pcPaper{
+            visibility: hidden;
+        };
+        .pcScissors{
+            visibility: hidden;
+        }
+    }
+}
+
+
+
+
+

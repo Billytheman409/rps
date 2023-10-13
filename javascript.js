@@ -1,89 +1,86 @@
-//function to play Rock Paper Scissors
-function rps() {
-//create variable and use an input to capture the user's answer
-    let userAns = prompt('Enter your choice of Rock, Paper or Scissors');
-//if cancelled, send this message; if not, continue as planned
-        if(userAns == null) {
-            alert('Thank you for playing. You are welcome to play again at any time.');
-            return
-        }
-        else{
-//standardize answer by forcing it to all caps
-            userAns = userAns.toUpperCase()
-            console.log(userAns)
-        };
-//create variables to keep track of wins ties and losses
-    var wins = 0;
-    var ties = 0;
-    var losses = 0;
-//begin loop to manage a 5 game set
-    for (let i=1; i<6; i++) {
-//use array to establish list of acceptable answers. use all caps to standardize for comparison
-    let ansArray = ['ROCK', 'PAPER', 'SCISSORS'];
-//create variable and use random function to generate/set an answer for the computer
-    let pcAns = ansArray[Math.floor(Math.random() * ansArray.length)];
-    console.log(pcAns);
-//compare answers
-        if(userAns == pcAns) {
-            ties == ties++
-            var response =('Tie.\nYou chose ' + userAns + ' and the computer chose ' + pcAns + '.\nYou have:\n  Won ' + wins + '\n  Lost ' + losses + '\n  Tied ' + ties)
-        }
-//else if pc answer equals "rock" and user answer equals "paper", create message that says "You win!"
-        else if(pcAns == 'ROCK' && userAns == 'PAPER') {
-            wins == wins++
-            var response =('You win!\nYou chose ' + userAns + ' and the computer chose ' + pcAns + '.\nYou have:\n  Won ' + wins + '\n  Lost ' + losses + '\n  Tied ' + ties)
-        }
-//else if pc answer equals "rock" and use answer equals "scissors", create message that says "You lose. Play again."
-        else if(pcAns == 'ROCK' && userAns == 'SCISSORS') {
-            losses == losses++
-            var response =('You lose.\nYou chose ' + userAns + ' and the computer chose ' + pcAns + '.\nYou have:\n  Won ' + wins + '\n  Lost ' + losses + '\n  Tied ' + ties)
-        }
-//else if pc answer equals "paper" and user answer equals "scissors", create message that says "You win!"
-        else if(pcAns == 'PAPER' && userAns == 'SCISSORS') {
-            wins == wins++
-            var response =('You win!\nYou chose ' + userAns + ' and the computer chose ' + pcAns + '.\nYou have:\n  Won ' + wins + '\n  Lost ' + losses + '\n  Tied ' + ties)
-        }
-//else if pc answer equals "paper" and use answer equals "rock", create message that says "You lose. Play again."
-        else if(pcAns == 'PAPER' && userAns == 'ROCK') {
-            losses == losses++
-            var response =('You lose.\nYou chose ' + userAns + ' and the computer chose ' + pcAns + '.\nYou have:\n  Won ' + wins + '\n  Lost ' + losses + '\n  Tied ' + ties)
-        }
-//else if pc answer equals "scissors" and user answer equals "rock", create message that says "You win!"
-        else if(pcAns == 'SCISSORS' && userAns == 'ROCK') {
-            wins == wins++
-            var response =('You win!\nYou chose ' + userAns + ' and the computer chose ' + pcAns + '.\nYou have:\n  Won ' + wins + '\n  Lost ' + losses + '\n  Tied ' + ties)
-        }
-//else if pc answer equals "scissors" and use answer equals "paper", create message that says "You lose. Play again."
-        else if(pcAns == 'SCISSORS' && userAns == 'PAPER') {
-            losses == losses++
-            var response =('You lose.\nYou chose ' + userAns + ' and the computer chose ' + pcAns + '.\nYou have:\n  Won ' + wins + '\n  Lost ' + losses + '\n  Tied ' + ties)
-        } 
-//if subsequent answer does not equal "rock" or "paper" or "scissors" create message "Please select 'Rock', 'Paper' or 'Scissors'
-        else if(userAns !='ROCK' && userAns!='PAPER' && userAns!='SCISSORS') {
-            var response =('Please enter a choice of "Rock" or "Paper" or "Scissors"');
-//offset game iteration for a non-qualifying answer (still play 5 games with legitimate answers)
-            i=i-1;
-        }    
-        else{
-            var response =('You lose.\nYou chose ' + userAns + ' and the computer chose ' + pcAns + '.\n\rYou have:\n  Won ' + wins + '\n  Lost ' + losses + '\n  Tied ' + ties)
-        };
+//add event listener to Choose Your Weapon buttons
+//store button selected in variable
 
-//loop for 5 games
-        if(i<5) {
-            userAns = prompt(response + '\n\rEnter selection to play again.');
-//message for user's cancellation
-            if(userAns == null) {
-                alert('Thank you for playing. You are welcome to play again at any time.');
-                return;
-            }
-            else{
-                userAns = userAns.toUpperCase();
-            };
-        }
-        else{
-            alert('Here are the results of your 5-rounds:\nFor your last game you chose ' + userAns + ' and the computer chose ' + pcAns + '\nYou:\n  Won ' + wins + '\n  Lost ' + losses + '\n  Tied ' + ties)
-        }
-    };
+ties = 0;
+wins = 0;
+losses = 0;
+
+document.querySelectorAll('.weaponPics button').forEach(image => {
+    image.addEventListener('click', () => {
+        initUserAns = image.getAttribute('type');
+        initUserTieAns = image.getAttribute('id')
+        gameReset = document.querySelectorAll('.movePics button').forEach(image => {
+                image.style.visibility = 'hidden'
+        })
+        rps() 
+    })
+})
+
+function rps() {
+//generate selection for pc
+    //use array to establish list of acceptable answers. use all caps to standardize for comparison
+    let pcArray = ['ROCK', 'PAPER', 'SCISSORS'];
+//create variable and use random function to generate/set an answer for the computer
+    let pcAns = pcArray[Math.floor(Math.random() * pcArray.length)];
+//compare answers
+//convert user answer from global to local
+    let userAns = initUserAns
+    let userTieAns = initUserTieAns
+    if(userAns == pcAns) {
+        ties == ties++
+        rsltMsg = 'You selected ' + userAns + ' the pc also selected ' + pcAns + '. The result is a tie.'
+        userAns = document.getElementById(parseInt(userTieAns,10) + 5)
+        userAns.style.visibility = 'visible'
+        pcAns = document.getElementById(parseInt(userTieAns,10) + 8)
+        pcAns.style.visibility = 'visible'
+    }
+    else if(userAns == 'ROCK' && pcAns == 'SCISSORS') {
+        wins == wins++
+        rsltMsg =('You win!\nRock smashes Scissors')
+        userAns = document.getElementById('5')
+        userAns.style.visibility = 'visible'
+        pcAns = document.getElementById('10')
+        pcAns.style.visibility = 'visible'
+    }    
+    else if(userAns == 'PAPER' && pcAns == 'ROCK') {
+        wins == wins++
+        rsltMsg =('You win!\nPaper covers Rock')
+        userAns = document.getElementById('6')
+        userAns.style.visibility = 'visible'
+        pcAns = document.getElementById('8')
+        pcAns.style.visibility = 'visible'
+    }
+    else if(userAns == 'SCISSORS' && pcAns == 'PAPER') {
+        wins == wins++
+        rsltMsg =('You win!\nScissors cut Paper')
+        userAns = document.getElementById('7')
+        userAns.style.visibility = 'visible'
+        pcAns = document.getElementById('9')
+        pcAns.style.visibility = 'visible'
+    }
+    else if(userAns == 'ROCK' && pcAns == 'PAPER') {
+        losses == losses++
+        rsltMsg =('You lose!\nPaper covers Rock')
+        userAns = document.getElementById('5')
+        userAns.style.visibility = 'visible'
+        pcAns = document.getElementById('9')
+        pcAns.style.visibility = 'visible'
+    }    
+    else if(userAns == 'PAPER' && pcAns == 'SCISSORS') {
+        losses == losses++
+        rsltMsg =('You lose!\nScissors cut Paper')
+        userAns = document.getElementById('6')
+        userAns.style.visibility = 'visible'
+        pcAns = document.getElementById('10')
+        pcAns.style.visibility = 'visible'
+    }    
+    else if(userAns == 'SCISSORS' && pcAns == 'ROCK') {
+        losses == losses++
+        rsltMsg =('You lose!\nRock smashes Scissors')
+        userAns = document.getElementById('7')
+        userAns.style.visibility = 'visible'
+        pcAns = document.getElementById('8')
+        pcAns.style.visibility = 'visible'
+    }    
+    console.log(rsltMsg)
 };
-//initiate game function
-rps();

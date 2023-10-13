@@ -1,2 +1,2 @@
-# rps
-Rock Paper Scissors assignment
+# rps-ui
+Rock Paper Scissors assignment with user interface

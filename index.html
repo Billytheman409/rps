@@ -2,13 +2,66 @@
 <html lang="en-us">
   <head>
     <meta charset="utf-8">
-
     <title>Rock Paper Scissors</title>
     <link rel='stylesheet' href='styles.css' />
-    <h1>Rock Paper Scissors game</h1>
-    
+<!--    <link rel="icon" href="rps/images/user.png" /> -->
+    <h1 class='title'>Rock Paper Scissors game</h1>
   </head>
-  <SCRIPT src='javascript.js'></SCRIPT>
+
   <body>
+    <h1>Choose Your Weapon:</h1>  
+    <div class='weaponPics'>
+      <button class='weapon' type = 'ROCK' id=0>
+        <img src='images/rock.jpeg' alt='rock image' style="width:100px">      
+      </button>
+      <button class='weapon' type = 'PAPER' id=1>
+        <img src='images/paper.jpeg' alt='paper image' style="width:100px">       
+      </button>
+      <button class='weapon' type = 'SCISSORS' id=2>
+        <img src='images/scissors.jpeg' alt='scissors image' style="width:100px">
+      </button>
+      </div>
+    <h1>Opponents:</h1>
+    <div class='playerPics'>
+      <button class='user' id=3>
+        <img src='images/user.png' alt='user image' style="height:150px">
+      </button>
+      <button class='pc' id=4>  
+        <img src='images/pc.jpeg' alt='pc image' style="height:150px">
+      </button>
+    </div>  
+    
+    <h1>Results:</h1>
+    <div class='movePics'>
+
+      <div class='myMovePics'>
+        <button type='myROCK' id=5>
+          <img src='images/rock.jpeg' alt='rock image' style="width:100px">       
+        </button>
+        <button type='myPAPER' id=6>
+          <img src='images/paper.jpeg' alt='paper image' style="width:100px">         
+        </button>
+        <button type='mySCISSORS' id=7>
+          <img src='images/scissors.jpeg' alt='scissors image' style="width:100px">     
+        </button>
+      </div>
+
+      <div class='pcMovePics'>
+        <button class='pcRock' id=8>
+          <img src='images/rock.jpeg' alt='rock image' style="width:100px">   
+        </button>    
+        <button class='pcPaper' id=9>
+          <img src='images/paper.jpeg' alt='paper image' style="width:100px">    
+        </button>
+        <button class='pcScissors' id=10>
+          <img src='images/scissors.jpeg' alt='scissors image' style="width:100px">  
+        </button>
+      </div>
+
+      <h2></h2>
+
+    </div>
+
 
   </body>
+  <SCRIPT src='javascript.js'></SCRIPT>
