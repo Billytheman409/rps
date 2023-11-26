@@ -12,47 +12,12 @@
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    padding-top: 50px;
+    padding-top: 20px;
 }
-.movePics{
+.runningScore{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-
-    .myMovePics{
-        display: flex;
-        flex-direction: column;
-        align-content:flex-start;
-
-        .myROCK{
-            visibility: hidden;
-        };
-        .myPAPER{
-            visibility: hidden;
-        };
-        .mySCISSORS{
-            visibility: hidden;
-        }
-    }
-    .pcMovePics{
-        display: flex;
-        flex-direction: column;
-        align-content: flex-start;
-
-        .pcRock{
-            visibility: hidden;
-        };
-        .pcPaper{
-            visibility: hidden;
-        };
-        .pcScissors{
-            visibility: hidden;
-        }
-    }
+    padding-top: 20px;
 }
-
-
-
-
-

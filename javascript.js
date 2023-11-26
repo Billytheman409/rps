@@ -5,16 +5,26 @@ ties = 0;
 wins = 0;
 losses = 0;
 
-document.querySelectorAll('.weaponPics button').forEach(image => {
-    image.addEventListener('click', () => {
-        initUserAns = image.getAttribute('type');
-        initUserTieAns = image.getAttribute('id')
-        gameReset = document.querySelectorAll('.movePics button').forEach(image => {
-                image.style.visibility = 'hidden'
+//    document.querySelectorAll('.weaponPics button').forEach(image => {
+//    image.addEventListener('click', () => {
+//        initUserAns = image.getAttribute('type');
+//        initUserTieAns = image.getAttribute('id');
+
+//                gameReset = document.querySelectorAll('.movePics button').forEach(image => {
+//                image.style.visibility = 'hidden'
+//        })
+//    })
+
+userAns = document.querySelectorAll('.weaponPics button').forEach(image => {
+        image.addEventListener('click', () => {
+            userAns = image.getAttribute('type');
+            tieAns = image.getAttribute('id');
+            x.replaceChildren()
+            clearSummary = document.getElementById('summary')
+            clearSummary.textContent = ''
+            rps()
         })
-        rps() 
     })
-})
 
 function rps() {
 //generate selection for pc
@@ -24,63 +34,78 @@ function rps() {
     let pcAns = pcArray[Math.floor(Math.random() * pcArray.length)];
 //compare answers
 //convert user answer from global to local
-    let userAns = initUserAns
-    let userTieAns = initUserTieAns
+//    let rsltMsg
+
     if(userAns == pcAns) {
         ties == ties++
-        rsltMsg = 'You selected ' + userAns + ' the pc also selected ' + pcAns + '. The result is a tie.'
-        userAns = document.getElementById(parseInt(userTieAns,10) + 5)
-        userAns.style.visibility = 'visible'
-        pcAns = document.getElementById(parseInt(userTieAns,10) + 8)
-        pcAns.style.visibility = 'visible'
+        rsltMsg = 'You selected ' + userAns + '. The pc also selected ' + pcAns + '. The result is a tie.'
+        rslt()
     }
     else if(userAns == 'ROCK' && pcAns == 'SCISSORS') {
         wins == wins++
-        rsltMsg =('You win!\nRock smashes Scissors')
-        userAns = document.getElementById('5')
-        userAns.style.visibility = 'visible'
-        pcAns = document.getElementById('10')
-        pcAns.style.visibility = 'visible'
+        rsltMsg = 'You win!\nRock smashes Scissors'
+        rslt()
     }    
     else if(userAns == 'PAPER' && pcAns == 'ROCK') {
         wins == wins++
-        rsltMsg =('You win!\nPaper covers Rock')
-        userAns = document.getElementById('6')
-        userAns.style.visibility = 'visible'
-        pcAns = document.getElementById('8')
-        pcAns.style.visibility = 'visible'
+        rsltMsg = 'You win!\nPaper covers Rock'
+        rslt()
     }
     else if(userAns == 'SCISSORS' && pcAns == 'PAPER') {
         wins == wins++
-        rsltMsg =('You win!\nScissors cut Paper')
-        userAns = document.getElementById('7')
-        userAns.style.visibility = 'visible'
-        pcAns = document.getElementById('9')
-        pcAns.style.visibility = 'visible'
+        rsltMsg = 'You win!\nScissors cut Paper'
+        rslt()
     }
     else if(userAns == 'ROCK' && pcAns == 'PAPER') {
         losses == losses++
-        rsltMsg =('You lose!\nPaper covers Rock')
-        userAns = document.getElementById('5')
-        userAns.style.visibility = 'visible'
-        pcAns = document.getElementById('9')
-        pcAns.style.visibility = 'visible'
+        rsltMsg = 'You lose!\nPaper covers Rock'
+        rslt()
     }    
     else if(userAns == 'PAPER' && pcAns == 'SCISSORS') {
         losses == losses++
-        rsltMsg =('You lose!\nScissors cut Paper')
-        userAns = document.getElementById('6')
-        userAns.style.visibility = 'visible'
-        pcAns = document.getElementById('10')
-        pcAns.style.visibility = 'visible'
+        rsltMsg = 'You lose!\nScissors cut Paper'
+        rslt()
     }    
     else if(userAns == 'SCISSORS' && pcAns == 'ROCK') {
         losses == losses++
-        rsltMsg =('You lose!\nRock smashes Scissors')
-        userAns = document.getElementById('7')
-        userAns.style.visibility = 'visible'
-        pcAns = document.getElementById('8')
-        pcAns.style.visibility = 'visible'
+        rsltMsg = 'You lose!\nRock smashes Scissors'
+        rslt()
     }    
-    console.log(rsltMsg)
+    function rslt() {
+        var userImg = document.createElement("img")
+        userImg.src = 'images/' + userAns.toLowerCase() + '.jpeg'; 
+        var src = document.getElementById("x"); 
+        src.appendChild(userImg); 
+        
+        var pcImg = document.createElement("img")
+        pcImg.src = 'images/' + pcAns.toLowerCase() + '.jpeg'; 
+        var src = document.getElementById("x"); 
+        src.appendChild(pcImg); 
+        
+        x.style.display = 'flex';
+        x.style.flexDirection = 'row';
+        x.style.justifyContent = 'space-evenly';
+        x.style.alignItems = 'center';
+        x.style.paddingTop = '60px';
+    
+        var myH2 = document.getElementById('myRslt');
+        myH2.textContent = rsltMsg
+        myWins.textContent = wins
+        myLosses.textContent = losses
+
+        if(wins == 5) {
+            var summary = document.getElementById('summary');
+            summary.textContent = 'Congratulations! You have won 5 games. The pc only won ' + losses + '. You have bested the pc in this round of first-to-five.'
+            ties = 0;
+            wins = 0;
+            losses = 0;
+        }
+        else if(losses == 5) {
+            var summary = document.getElementById('summary');
+            summary.textContent = 'Sorry! The pc has won 5 games. You only won ' + wins + '. The pc has bested you in this round of first-to-five.'
+            ties = 0;
+            wins = 0;
+            losses = 0;
+        }
+    }    
 };
